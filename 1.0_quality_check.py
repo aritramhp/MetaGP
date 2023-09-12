@@ -55,6 +55,7 @@ parser.add_argument('-o','--outdir',dest='output_dir', type=str, required=True, 
 args = parser.parse_args()
 mapping_file = args.mapping_file
 output_dir = args.output_dir
+util.create_dir(output_dir)
 
 root_logger= logging.getLogger()
 root_logger.setLevel(logging.INFO) # or whatever
