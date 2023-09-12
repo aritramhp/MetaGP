@@ -1,6 +1,0 @@
-databases/hostdb/human_hg38.1.bt2 filter=lfs diff=lfs merge=lfs -text
-databases/hostdb/human_hg38.2.bt2 filter=lfs diff=lfs merge=lfs -text
-databases/hostdb/human_hg38.rev.2.bt2 filter=lfs diff=lfs merge=lfs -text
-databases/hostdb/human_hg38.3.bt2 filter=lfs diff=lfs merge=lfs -text
-databases/hostdb/human_hg38.4.bt2 filter=lfs diff=lfs merge=lfs -text
-databases/hostdb/human_hg38.rev.1.bt2 filter=lfs diff=lfs merge=lfs -text
