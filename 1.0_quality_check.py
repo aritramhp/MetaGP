@@ -14,15 +14,15 @@ import util
 def count_distribution(mapping_file,output_dir):
     mapping = pd.read_table(mapping_file, sep='\t')
     # print(mapping)
-    sampleid, fwd, rev = mapping.columns[0], mapping.columns[1], mapping.columns[2]
+    sampleid_col, fwd_col, rev_col = mapping.columns[0], mapping.columns[1], mapping.columns[2]
     list_rd_cnt = []
     for idx in mapping.index:
-        fwd_filename = mapping.loc[idx,fwd]
+        fwd_file = mapping.loc[idx,fwd_col]
         start_time = time.time() 
-        rd_count = util.count_reads(fwd_filename)
+        rd_count = util.count_reads(fwd_file)
         elapsed_time = time.time() - start_time
-        logging.info('SampleID: '+mapping.SampleID[idx]+ '\t#Reads: '+str(rd_count) +'\tExecution time: '+time.strftime("%H:%M:%S", time.gmtime(elapsed_time)))
-        list_rd_cnt.append([mapping.loc[idx,sampleid], rd_count])
+        logging.info('SampleID: '+mapping.loc[idx,sampleid_col]+ '\t#Reads: '+str(rd_count) +'\tExecution time: '+time.strftime("%H:%M:%S", time.gmtime(elapsed_time)))
+        list_rd_cnt.append([mapping.loc[idx,sampleid_col], rd_count])
     df = pd.DataFrame(list_rd_cnt, columns =['SampleID', 'Read_Count'])
     util.create_dir(output_dir)
     df.to_csv(os.path.join(output_dir,'raw_readcount.tab'), sep='\t')
