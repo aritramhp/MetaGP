@@ -14,7 +14,7 @@ import util
 def count_distribution(mapping_file,output_dir):
     mapping = pd.read_table(mapping_file, sep='\t')
     # print(mapping)
-    sampleid_col, fwd_col, rev_col = mapping.columns[0], mapping.columns[1], mapping.columns[2]
+    sampleid_col, fwd_col, rev_col = mapping.columns[1], mapping.columns[2], mapping.columns[3]
     list_rd_cnt = []
     for idx in mapping.index:
         fwd_file = mapping.loc[idx,fwd_col]

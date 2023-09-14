@@ -36,8 +36,10 @@ def mapping(input_dir):
 
     metainfo = []
     dirlist = [ name for name in os.listdir(input_dir) if os.path.isdir(os.path.join(input_dir, name)) ]
+    sample_num = 0
     for dir in dirlist:
-        sample = [dir]
+        sample_num += 1
+        sample = [sample_num,dir]
         dir = os.path.join(input_dir, dir)
         fwd_file = [f for f in glob(dir + "/*_1.*.gz")]
         if len(fwd_file) > 1:
@@ -55,7 +57,7 @@ def mapping(input_dir):
             sample.append(rev_file[0])
         metainfo.append(sample)
         
-    df = pd.DataFrame(metainfo, columns =['SampleID', 'Forward_read', 'Reverse_read'])
+    df = pd.DataFrame(metainfo, columns =['Num','SampleID', 'Forward_read', 'Reverse_read'])
     df.to_csv(os.path.join(input_dir,'mapping_file.tab'), sep='\t', index=False)
     
 
