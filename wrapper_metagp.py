@@ -6,7 +6,6 @@ import logging
 import multiprocessing as mp
 
 
-import util
 import metagp_core
 
 parser = ap.ArgumentParser()
@@ -59,8 +58,11 @@ config_file = metagp_core.make_config_file(output_dir)
 
 # check is config file has been created
 if os.path.isfile(config_file):
-    print('Configuration:\n'+util.print_config(config_file))
-    mapping_file = util.read_config(config_file,'General','mapping_file')
+    fp = open(config_file)
+    print('Configuration:\n'+fp.read())
+    CONFIG = configparser.ConfigParser()
+    CONFIG.read(config_file)
+    mapping_file = CONFIG.get('General','mapping_file')
 else: 
     raise Exception('Configuration file not found at {}'.format(config_file))
     exit()
@@ -121,7 +123,7 @@ if taxo_execution:
 #   run div_execution                            #
 #------------------------------------------------#
 if div_execution:
-    p = metagp_core.div_execution([config_file,docker_cmd])
+    p = metagp_core.div_execution(config_file)
 
 #------------------------------------------------#
 #   run functional_profiling                     #
