@@ -54,7 +54,7 @@ elif pre_execution:
 
 
 # make config file
-config_file = metagp_core.make_config_file(output_dir)
+config_file = metagp_core.make_config_file(output_dir,docker_cmd)
 
 # check is config file has been created
 if os.path.isfile(config_file):
