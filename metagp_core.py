@@ -5,7 +5,7 @@ import pandas as pd
 import logging
 
 # Make a config file
-def make_config_file(output_dir):
+def make_config_file(output_dir, docker_cmd):
     config_file = os.path.join(output_dir,'config.info')
     if os.path.isfile(config_file):
         reset = input('''Configuration file is found at the location. 
