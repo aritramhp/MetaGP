@@ -4,9 +4,6 @@ import configparser
 import pandas as pd
 import logging
 
-import util
-
-
 # Make a config file
 def make_config_file(output_dir):
     config_file = os.path.join(output_dir,'config.info')
