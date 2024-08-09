@@ -1,6 +1,6 @@
 # Installation
 The docker of MetaGP is available in, `https://hub.docker.com/r/aritramhp/metagp`
-Use `docker pull aritramhp/metagp:<tag>` to download and install the image
+Use `docker pull aritramhp/metagp:<tagname>` to download and install the image
 
 # Execution of the pipeline:
 All the functions are implemented in the `metagp_core.py` file. 
