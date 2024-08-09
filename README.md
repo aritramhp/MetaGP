@@ -1,3 +1,6 @@
+# Overview
+![alt text](https://github.com/aritramhp/MetaGP-CRC/blob/main/MetaGP_flowdia.pdf?raw=true)
+
 # Installation
 The docker of MetaGP is available in, `https://hub.docker.com/r/aritramhp/metagp`
 Use `docker pull aritramhp/metagp:<tagname>` to download and install the image
