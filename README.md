@@ -1,5 +1,5 @@
 # Overview
-![alt text](https://github.com/aritramhp/MetaGP-CRC/blob/main/MetaGP_flowdia.pdf?raw=true)
+![alt text](https://github.com/aritramhp/MetaGP-CRC/blob/main/MetaGP_flowdia.jpg?raw=true)
 
 # Installation
 The docker of MetaGP is available in, `https://hub.docker.com/r/aritramhp/metagp`
