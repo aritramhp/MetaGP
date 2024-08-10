@@ -87,7 +87,7 @@ if pre_execution:
     # parallel execution of pre-execution
     result = pool.map(metagp_core.pre_execution, item)
     # pre-execution report
-    p = metagp_core.qcheck_stats(config_file, qc=False)
+    p = metagp_core.qcheck_stats(config_file, qc=False, docker_cmd)
 
 
 #------------------------------------------------#
@@ -98,7 +98,7 @@ if qc_execution:
     result = pool.map(metagp_core.qc_execution, item)
     print(result)
     # quality_control report
-    p = metagp_core.qcheck_stats(config_file, qc=True)
+    p = metagp_core.qcheck_stats(config_file, qc=True, docker_cmd)
 
 
 # Sample to process
@@ -118,14 +118,14 @@ if taxo_execution:
     # parallel execution of taxonomy_profiling
     result = pool.map(metagp_core.taxo_execution, item)
     # taxonomy_profiling report
-    p = metagp_core.taxoprof_stats(config_file)
+    p = metagp_core.taxoprof_stats(config_file, docker_cmd)
 
 
 #------------------------------------------------#
 #   run div_execution                            #
 #------------------------------------------------#
 if div_execution:
-    p = metagp_core.div_execution(config_file)
+    p = metagp_core.div_execution(config_file, docker_cmd)
 
 #------------------------------------------------#
 #   run functional_profiling                     #
@@ -134,4 +134,4 @@ if func_execution:
     # parallel execution of functional_profile
     result = pool.map(metagp_core.func_execution, item)
     # functional_profiling report
-    p = metagp_core.funcprof_stats(config_file)
+    p = metagp_core.funcprof_stats(config_file, docker_cmd)
