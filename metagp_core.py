@@ -60,7 +60,7 @@ def qc_execution(item):
     return p
 
 # Execute quality control stat
-def qcheck_stats(config_file, qc, docker_cmd):
+def qcheck_stats(docker_cmd, config_file, qc):
     if qc:
         cmd = docker_cmd +' python qcheck_stats.py -c '+config_file+' -p'
     else:
@@ -87,7 +87,7 @@ def taxo_execution(item):
     return p
         
 # Stat. of taxonomy profile
-def taxoprof_stats(config_file,docker_cmd):
+def taxoprof_stats(docker_cmd,config_file):
     cmd = docker_cmd +' python taxoprof_stats.py -c '+config_file
     print("Submitting taxo_profile_stat with command: {}".format(cmd))
     try:
