@@ -64,6 +64,7 @@ if os.path.isfile(config_file):
     CONFIG.read(config_file)
     mapping_file = CONFIG.get('General','mapping_file')
     mapping_file = mapping_file.replace('/mnt/data',input_basedir)
+    config_file = config_file.replace(input_basedir,'/mnt/data')
 else: 
     raise Exception('Configuration file not found at {}'.format(config_file))
     exit()
