@@ -63,6 +63,7 @@ if os.path.isfile(config_file):
     CONFIG = configparser.ConfigParser()
     CONFIG.read(config_file)
     mapping_file = CONFIG.get('General','mapping_file')
+    mapping_file = mapping_file.replace('/mnt/data',input_basedir)
 else: 
     raise Exception('Configuration file not found at {}'.format(config_file))
     exit()
