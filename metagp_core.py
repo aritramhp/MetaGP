@@ -12,7 +12,7 @@ def make_config_file(output_dir, input_basedir, docker_cmd):
                         To customize the configuration file, exit from here and check `make_config.py -h`.
                         Would you like to reset the existing configuration settings?\n [Y]es/[N]o: ''')
         if reset.lower()=='y' or reset.lower()=='yes':
-            cmd = docker_cmd+' MetaGP.sh config -i ' + input_basedir
+            cmd = docker_cmd+'/bin/bash MetaGP.sh config -i ' + input_basedir
             print("Submitting make_config with command: {}".format(cmd))
             try:
                 subprocess.run(cmd.split(), capture_output=True, check=True)
@@ -22,7 +22,7 @@ def make_config_file(output_dir, input_basedir, docker_cmd):
                 exit()
     else:
         print('Creating the configuration file.')
-        cmd = docker_cmd+' MetaGP.sh config -i ' + input_basedir
+        cmd = docker_cmd+'/bin/bash MetaGP.sh config -i ' + input_basedir
         print("Submitting make_config with command: {}".format(cmd))
         try:
             subprocess.run(cmd.split(), capture_output=True, check=True)
@@ -35,7 +35,7 @@ def make_config_file(output_dir, input_basedir, docker_cmd):
 # Check the raw data quality before execute the main pipeline
 def pre_execution(item):
     sample,fwd,rev,config_file,docker_cmd = item
-    cmd = docker_cmd+' MetaGP.sh pre_exec -s  '+sample+' -f '+fwd+' -r '+rev+' -c '+config_file
+    cmd = docker_cmd+'/bin/bash MetaGP.sh pre_exec -s  '+sample+' -f '+fwd+' -r '+rev+' -c '+config_file
     print("Submitting pre_execution with command: {}".format(cmd))
     try:
         p = subprocess.run(cmd.split(), capture_output=True, check=True)
@@ -49,7 +49,7 @@ def pre_execution(item):
 # Execute quality control
 def qc_execution(item):        
     sample,fwd,rev,config_file,docker_cmd = item
-    cmd = docker_cmd+' MetaGP.sh exec_qc -s '+sample+' -f '+fwd+' -r '+rev+' -c '+config_file
+    cmd = docker_cmd+'/bin/bash MetaGP.sh exec_qc -s '+sample+' -f '+fwd+' -r '+rev+' -c '+config_file
     print("Submitting quality_control with command: {}".format(cmd))
     try:
         p = subprocess.run(cmd.split(), capture_output=True, check=True)
@@ -60,11 +60,11 @@ def qc_execution(item):
     return p
 
 # Execute quality control stat
-def qcheck_stats(config_file, qc):
+def qcheck_stats(config_file, qc, docker_cmd):
     if qc:
-        cmd = 'python qcheck_stats.py -c '+config_file+' -p'
+        cmd = docker_cmd +' python qcheck_stats.py -c '+config_file+' -p'
     else:
-        cmd = 'python qcheck_stats.py -c '+config_file
+        cmd = docker_cmd+' python qcheck_stats.py -c '+config_file
     print("Submitting quality_control with command: {}".format(cmd))
     try:
         p = subprocess.run(cmd.split(), capture_output=True, check=True)
@@ -76,7 +76,7 @@ def qcheck_stats(config_file, qc):
 # Execute taxonomic profiling
 def taxo_execution(item):
     sample,fwd,rev,config_file,docker_cmd = item
-    cmd = docker_cmd+' MetaGP.sh exec_taxprof -s '+sample+' -f '+fwd+' -r '+rev+' -c '+config_file
+    cmd = docker_cmd+'/bin/bash MetaGP.sh exec_taxprof -s '+sample+' -f '+fwd+' -r '+rev+' -c '+config_file
     print("Submitting taxonomic_profiling with command: {}".format(cmd))
     try:
         p = subprocess.run(cmd.split(), capture_output=True, check=True)
@@ -87,8 +87,8 @@ def taxo_execution(item):
     return p
         
 # Stat. of taxonomy profile
-def taxoprof_stats(config_file):
-    cmd = 'python taxoprof_stats.py -c '+config_file
+def taxoprof_stats(config_file,docker_cmd):
+    cmd = docker_cmd +' python taxoprof_stats.py -c '+config_file
     print("Submitting taxo_profile_stat with command: {}".format(cmd))
     try:
         p = subprocess.run(cmd.split(), capture_output=True, check=True)
@@ -98,8 +98,8 @@ def taxoprof_stats(config_file):
     return p
     
 # Execute diversity computation
-def div_execution(config_file):
-    cmd = 'python diversity.py -c '+config_file
+def div_execution(config_file, docker_cmd):
+    cmd = docker_cmd+' python diversity.py -c '+config_file
     print("Submitting diversity with command: {}".format(cmd))
     try:
         p = subprocess.run(cmd.split(), capture_output=True, check=True)
@@ -111,7 +111,7 @@ def div_execution(config_file):
 # Execute functional profiling
 def func_execution(item):
     sample,fwd,rev,config_file,docker_cmd = item
-    cmd = docker_cmd+' MetaGP.sh exec_funcprof -s '+sample+' -f '+fwd+' -r '+rev+' -c '+config_file
+    cmd = docker_cmd+'/bin/bash MetaGP.sh exec_funcprof -s '+sample+' -f '+fwd+' -r '+rev+' -c '+config_file
     print("Submitting func_profiling with command: {}".format(cmd))
     try:
         p = subprocess.run(cmd.split(), capture_output=True, check=True)
@@ -122,8 +122,8 @@ def func_execution(item):
     return p
 
 # Stat. of functional profile
-def funcprof_stats(config_file):
-    cmd = 'python funcprof_stats.py -c '+config_file 
+def funcprof_stats(config_file,docker_cmd):
+    cmd = docker_cmd+' python funcprof_stats.py -c '+config_file 
     print("Submitting funcprof_stats with command: {}".format(cmd))
     try:
         p = subprocess.run(cmd.split(), capture_output=True, check=True)
