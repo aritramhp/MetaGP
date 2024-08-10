@@ -33,7 +33,7 @@ output_dir = os.path.join(input_basedir,'Analysis')
 
 # Docker/apptainer/bash
 docker_cmd = 'bash ' if args.apptainer_file=='bash' else \
-            'docker run --rm -v '+input_basedir+':/mnt/data aritramhp/metagp /bin/bash ' if args.apptainer_file=='docker' else \
+            'docker run --rm -v '+input_basedir+':/mnt/data aritramhp/metagp ' if args.apptainer_file=='docker' else \
             'apptainer exec --bind '+input_basedir+':/mnt/data '+args.apptainer_file+' '
 
 # Choice of execution
