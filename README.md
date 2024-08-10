@@ -3,7 +3,7 @@
 
 # Installation
 The docker of MetaGP is available in, `https://hub.docker.com/r/aritramhp/metagp`
-Use `docker pull aritramhp/metagp:<tagname>` to download and install the image
+Use `docker pull aritramhp/metagp:latest` to download and install the image
 
 # Execution of the pipeline:
 - __Input:__ All the data should be kept in `<input_directory>/Data directory`.
