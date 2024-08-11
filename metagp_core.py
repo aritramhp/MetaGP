@@ -5,7 +5,7 @@ import pandas as pd
 import logging
 
 # Make a config file
-def make_config_file(output_dir, input_basedir, docker_cmd):
+def make_config_file(docker_cmd, output_dir, input_basedir):
     config_file = os.path.join(output_dir,'config.info')
     if os.path.isfile(config_file):
         reset = input('''Configuration file is found at the location. 
@@ -98,7 +98,7 @@ def taxoprof_stats(docker_cmd,config_file):
     return p
     
 # Execute diversity computation
-def div_execution(config_file, docker_cmd):
+def div_execution(docker_cmd, config_file):
     cmd = docker_cmd+' python diversity.py -c '+config_file
     print("Submitting diversity with command: {}".format(cmd))
     try:
@@ -122,7 +122,7 @@ def func_execution(item):
     return p
 
 # Stat. of functional profile
-def funcprof_stats(config_file,docker_cmd):
+def funcprof_stats(docker_cmd, config_file):
     cmd = docker_cmd+' python funcprof_stats.py -c '+config_file 
     print("Submitting funcprof_stats with command: {}".format(cmd))
     try:
