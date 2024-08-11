@@ -54,7 +54,7 @@ elif pre_execution:
 
 
 # make config file
-config_file = metagp_core.make_config_file(output_dir,input_basedir,docker_cmd)
+config_file = metagp_core.make_config_file(docker_cmd,output_dir,input_basedir)
 
 # check is config file has been created
 if os.path.isfile(config_file):
@@ -87,7 +87,7 @@ if pre_execution:
     # parallel execution of pre-execution
     result = pool.map(metagp_core.pre_execution, item)
     # pre-execution report
-    p = metagp_core.qcheck_stats(config_file, qc=False, docker_cmd)
+    p = metagp_core.qcheck_stats(docker_cmd, config_file, qc=False)
 
 
 #------------------------------------------------#
@@ -98,7 +98,7 @@ if qc_execution:
     result = pool.map(metagp_core.qc_execution, item)
     print(result)
     # quality_control report
-    p = metagp_core.qcheck_stats(config_file, qc=True, docker_cmd)
+    p = metagp_core.qcheck_stats(docker_cmd, config_file, qc=True)
 
 
 # Sample to process
@@ -118,14 +118,14 @@ if taxo_execution:
     # parallel execution of taxonomy_profiling
     result = pool.map(metagp_core.taxo_execution, item)
     # taxonomy_profiling report
-    p = metagp_core.taxoprof_stats(config_file, docker_cmd)
+    p = metagp_core.taxoprof_stats(docker_cmd,config_file)
 
 
 #------------------------------------------------#
 #   run div_execution                            #
 #------------------------------------------------#
 if div_execution:
-    p = metagp_core.div_execution(config_file, docker_cmd)
+    p = metagp_core.div_execution(docker_cmd,config_file)
 
 #------------------------------------------------#
 #   run functional_profiling                     #
@@ -134,4 +134,4 @@ if func_execution:
     # parallel execution of functional_profile
     result = pool.map(metagp_core.func_execution, item)
     # functional_profiling report
-    p = metagp_core.funcprof_stats(config_file, docker_cmd)
+    p = metagp_core.funcprof_stats(docker_cmd,config_file)
