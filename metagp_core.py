@@ -49,7 +49,9 @@ def pre_execution(item):
 # Execute quality control
 def qc_execution(item):        
     sample,fwd,rev,config_file,docker_cmd = item
-    cmd = docker_cmd+'/bin/bash MetaGP.sh exec_qc -s '+sample+' -f '+fwd+' -r '+rev+' -c '+config_file
+    # The docker image shows issues in GLIBC_2.34. So, TRF cannot be executed
+    # Remove --bypass_trf argument once the issue resolves
+    cmd = docker_cmd+'/bin/bash MetaGP.sh exec_qc -s '+sample+' -f '+fwd+' -r '+rev+' -c '+config_file+' --bypass_trf'
     print("Submitting quality_control with command: {}".format(cmd))
     try:
         p = subprocess.run(cmd.split(), capture_output=True, check=True)
