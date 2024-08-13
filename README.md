@@ -76,7 +76,7 @@ This script generates a table and a plot to represent the number of reads.
 
       - `raw_readcount.tab` – A table with the number of reads of each sample
 
-      - `raw_readcount.png1 – Plot of the number of reads for each sample
+      - `raw_readcount.png` – Plot of the number of reads for each sample
 
   - __For advanced arguments:__
 
