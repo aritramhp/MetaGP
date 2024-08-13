@@ -7,7 +7,9 @@ Use `docker pull aritramhp/metagp:latest` to download and install the image
 
 # Execution of the pipeline:
 - __Input:__ All the data should be kept in `<input_directory>/Data directory`.
-- __Requirement:__ `python3.8` or more and `pandas` is required to run `wrapper_metagp.py`
+- __Requirement:__ To run `wrapper_metagp.py`
+  - `python3.8` or more and
+  - `pandas`
 - __Execution__: All the functions are implemented in the metagp_core.py file. Each function performs a specific task present in the docker. For easy to execute, `wrapper_metagp.py` file has been provided. These files can be downloaded from `https://github.com/aritramhp/MetaGP`.
 - __Basic command:__
   `python wrapper_metagp.py -i <input_directory> [option]`
