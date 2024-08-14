@@ -9,8 +9,8 @@ import multiprocessing as mp
 import metagp_core
 
 parser = ap.ArgumentParser()
-parser.add_argument('--app',dest='apptainer_file', type=str, default='bash',
-                    help='Apptainer file (.sif).')
+parser.add_argument('--app',dest='apptainer_file', type=str, default='docker',
+                    help='"bash" or "docker" or the Apptainer file (.sif). [default: docker]')
 parser.add_argument('-i','--indir',dest='input_dir', type=str, required=True, 
                     help='Input directory.')
 # parser.add_argument('-o','--outdir',dest='output_dir', type=str, required=True, 
