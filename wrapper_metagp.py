@@ -78,7 +78,7 @@ for idx in df_mapping.index:
     rev = df_mapping.loc[idx,'Reverse_read']
     item.append([sample,fwd,rev,config_file,docker_cmd])
 # Number of Parallel processing
-pool = mp.Pool(min(mp.cpu_count()/2,len(item)))
+pool = mp.Pool(min(int(mp.cpu_count()/2),len(item)))
 
 #------------------------------------------------#
 #   run pre-execution                            #
