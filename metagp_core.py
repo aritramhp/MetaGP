@@ -73,6 +73,7 @@ def qcheck_stats(docker_cmd, config_file, qc):
         print("Finished: quality_control_stat")
     except subprocess.CalledProcessError:
         print("Error submitting Job: quality_control_stat")
+        exit()
     return p
     
 # Execute taxonomic profiling
@@ -97,6 +98,7 @@ def taxoprof_stats(docker_cmd,config_file):
         print("Finished: taxo_profile_stat")
     except subprocess.CalledProcessError:
         print("Error submitting Job: taxo_profile_stat")
+        exit()
     return p
     
 # Execute diversity computation
@@ -108,6 +110,7 @@ def div_execution(docker_cmd, config_file):
         print("Finished: diversity")
     except subprocess.CalledProcessError:
         print("Error submitting Job: diversity")
+        exit()
     return p
 
 # Execute functional profiling
@@ -132,4 +135,5 @@ def funcprof_stats(docker_cmd, config_file):
         print("Finished: funcprof_stats")
     except subprocess.CalledProcessError:
         print("Error submitting Job: funcprof_stats")
+        exit()
     return p
